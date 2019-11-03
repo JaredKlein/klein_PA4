@@ -6,16 +6,20 @@ import java.util.HashMap;
 public class DuplicateCounter {
     private HashMap<String, Integer> wordCounter = new HashMap<>();
 
-    public void count(String dataFile) throws IOException {
-        FileInputStream inStream = new FileInputStream(dataFile);
-        Scanner scan = new Scanner(inStream);
+    public void count(String dataFile) throws FileNotFoundException {
+        Scanner scan = new Scanner(new File(dataFile));
+        String compareWords;
 
         while (scan.hasNext()) {
-            wordCounter.compute(scan.next(), (s, c) -> c == null ? 1 : c + 1);
+            compareWords = scan.next();
+            if (wordCounter.containsKey(compareWords)) {
+                wordCounter.put(compareWords, wordCounter.get(compareWords) + 1);
+            }
+            else {
+                wordCounter.put(compareWords, 1);
+            }
         }
-
         scan.close();
-        inStream.close();
     }
 
     public void write(String outputFile) throws IOException {

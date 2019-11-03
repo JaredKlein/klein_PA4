@@ -1,9 +1,9 @@
-the 2
+the 3
 can 1
 one 2
 only 1
+i 6
 eat 1
-i 1
 am 1
-cheese 1
 who 1
+cheese 1
